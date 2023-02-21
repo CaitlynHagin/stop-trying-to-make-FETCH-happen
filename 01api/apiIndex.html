@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  
+        <h1>Reqres task</h1>
+        <div class="demo"></div>
+        
+        <script>
+                // create our HTTP request using fetch
+                fetch("https://reqres.in/api/users/2")
+                    .then((response) => { 
+                        // first then statement we log the response object, then return the body in a readable format (json)
+                        console.log(response)
+                        return response.json()
+                    })
+                    .then((data)=>{
+                        //second then statement  we set up the variables, with the element we want to add the content to , and the second is the html that we want to put in it, including the name of the person we retrieved from api 
+                        console.log(data.data);
+                        //1.
+                        const element = document.querySelector('.demo');
+                        //2.
+                        const html = `
+                            <div class="user">
+                                <img src="${data.data.avatar}" alt="" width="140"/>
+                                <h2>${data.data.first_name + ' ' + data.data.last_name}</h2>
+                            </div>
+                        `;
+                        //Finally we insert the HTML to the element here
+                        element.insertAdjacentHTML('beforeEnd', html);
+    
+                    })
+                    </script>
+    
+</body>
+</html>
